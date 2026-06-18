@@ -81,7 +81,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+    <div className="min-h-screen" style={{backgroundColor: "var(--bg)"}}>
       {/* Nav */}
       <nav className="sticky top-0 z-50 bg-white/90 dark:bg-slate-800/90 backdrop-blur border-b border-slate-200 dark:border-slate-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-14 gap-8">
@@ -108,8 +108,8 @@ export default function DashboardPage() {
             {[
               { label: "Pipelines", value: stats.total, sub: "All time" },
               { label: "Agents", value: agents.length, sub: "Specialist agents" },
-              { label: "Completed", value: stats.completed, sub: `${stats.total ? Math.round(stats.completed/stats.total*100) : 0}% pass` },
-              { label: "Errors", value: stats.errors, sub: `${stats.total ? Math.round(stats.errors/stats.total*100) : 0}% fail` },
+              { label: "Completed", value: stats.completed, sub: `${stats.total ? Math.round(stats.completed/stats.total*100) : 0}% success rate` },
+              { label: "Errors", value: stats.errors, sub: `${stats.total ? Math.round(stats.errors/stats.total*100) : 0}% of runs` },
             ].map(c => (
               <div key={c.label} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4">
                 <div className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">{c.label}</div>
