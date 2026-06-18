@@ -53,7 +53,7 @@ const TerminalBlock = () => (
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#FAFAFA] dark:bg-slate-950">
+    <div className="min-h-screen" style={{backgroundColor: "var(--bg)"}}>
       <main className="max-w-5xl mx-auto px-6">
         {/* Hero */}
         <section className="pt-24 sm:pt-32 pb-20">

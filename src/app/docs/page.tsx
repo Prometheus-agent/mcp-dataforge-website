@@ -16,7 +16,7 @@ const apiEndpoints = [
 
 export default function DocsPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950">
+    <div className="min-h-screen" style={{backgroundColor: "var(--bg)"}}>
       <main className="max-w-3xl mx-auto px-6 py-16 sm:py-24">
         {/* Header */}
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-slate-900 dark:text-white">
