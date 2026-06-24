@@ -1,12 +1,12 @@
 import Link from "next/link";
 
 const agents = [
-  { name: "Pipeline", desc: "SQL generation & debugging", scope: "sql" },
-  { name: "Data Quality", desc: "Profiling & validation", scope: "quality" },
-  { name: "Schema", desc: "Drift detection & migration", scope: "schema" },
-  { name: "Orchestration", desc: "DAG management & scheduling", scope: "dag" },
-  { name: "Catalog", desc: "Discovery & documentation", scope: "catalog" },
-  { name: "Observability", desc: "Monitoring & cost analysis", scope: "observe" },
+  { name: "Pipeline", desc: "SQL generation & debugging", scope: "sql", detail: "Generates, debugs, and optimizes SQL pipelines from natural language descriptions. Supports Spark, dbt, and multiple warehouses." },
+  { name: "Data Quality", desc: "Profiling & validation", scope: "quality", detail: "Profiles tables, detects anomalies, and validates data quality rules. Runs on DuckDB for fast local analysis." },
+  { name: "Schema", desc: "Drift detection & migration", scope: "schema", detail: "Compares schemas across environments, generates migration scripts, lints naming conventions, and traces column lineage." },
+  { name: "Orchestration", desc: "DAG management & scheduling", scope: "dag", detail: "Creates and manages Airflow-compatible DAGs, resolves dependencies, handles retries, and plans backfills." },
+  { name: "Catalog", desc: "Discovery & documentation", scope: "catalog", detail: "Searches tables and columns, auto-generates documentation, analyzes change impact, and manages data asset tags." },
+  { name: "Observability", desc: "Monitoring & cost analysis", scope: "observe", detail: "Tracks pipeline health and success rates, summarizes alerts, analyzes warehouse costs, and suggests optimizations." },
 ] as const;
 
 const commands = [
@@ -131,13 +131,16 @@ export default function Home() {
                 orchestration: "bg-cyan-500", catalog: "bg-amber-500", observability: "bg-rose-500",
               };
               return (
-                <div key={a.name} className={`relative p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-all duration-200 ${borders[key] || ""} hover:shadow-lg`}>
+                <div key={a.name} className={`group relative p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-all duration-200 ${borders[key] || ""} hover:shadow-lg cursor-default`}>
                   <div className={`w-8 h-1 rounded-full mb-3 ${accentBars[key] || "bg-slate-300"}`} />
                   <div className="font-semibold text-sm text-slate-900 dark:text-slate-100 mb-1">{a.name}</div>
                   <div className="text-sm text-slate-500 dark:text-slate-400 mb-3">{a.desc}</div>
                   <span className={`inline-block text-[11px] font-medium px-2.5 py-0.5 rounded-full ${tags[key] || "bg-slate-100 text-slate-600"}`}>
                     {a.scope}
                   </span>
+                  <div className="absolute z-10 left-0 top-full mt-2 w-72 p-4 rounded-xl bg-slate-900 dark:bg-slate-800 text-sm text-slate-300 shadow-xl border border-slate-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                    {a.detail}
+                  </div>
                 </div>
               );
             })}
