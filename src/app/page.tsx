@@ -9,19 +9,10 @@ const agents = [
   { name: "Observability", desc: "Monitoring & cost analysis", scope: "observe" },
 ] as const;
 
-const agentIcons: Record<string, string> = {
-  pipeline: "K", dq: "Q", schema: "S", orchestration: "O", catalog: "C", observability: "V",
-};
-
-const agentColors: Record<string, string> = {
-  pipeline: "shadow-blue-500/20", dq: "shadow-emerald-500/20", schema: "shadow-violet-500/20",
-  orchestration: "shadow-cyan-500/20", catalog: "shadow-amber-500/20", observability: "shadow-rose-500/20",
-};
-
 const commands = [
   { cmd: "dataforge init", output: "Created config.yaml" },
-  { cmd: "dataforge run \"profile customers, check nulls\"", output: "✅ dq: 4 rows, 2 columns profiled" },
-  { cmd: "dataforge run \"detect schema drift between staging and prod\"", output: "📐 Drift: +2 added, ~1 modified" },
+  { cmd: "dataforge run \"profile customers, check nulls\"", output: "dq: 4 rows, 2 columns profiled" },
+  { cmd: "dataforge run \"detect schema drift between staging and prod\"", output: "Drift: +2 added, ~1 modified" },
   { cmd: "dataforge chat", output: "Interactive mode — agents, pipelines, status, help" },
 ];
 
@@ -96,9 +87,9 @@ export default function Home() {
           </h2>
           <div className="grid sm:grid-cols-3 gap-8 text-center">
             {[
-              { step: "1", title: "Describe your task", desc: 'Type what you need — "profile the customers table" — in plain English.' },
+              { step: "1", title: "Describe your task", desc: 'Describe what you need in natural language — "profile the customers table."' },
               { step: "2", title: "Agents collaborate", desc: "The orchestrator routes your task to the right specialist agents and runs them." },
-              { step: "3", title: "Get results", desc: "Profiles, schema diffs, quality reports — returned as structured data." },
+              { step: "3", title: "Get results", desc: "Profiles, schema diffs, and quality reports returned as structured data." },
             ].map((item) => (
               <div key={item.step}>
                 <div className="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 font-bold text-sm flex items-center justify-center mx-auto mb-4">
@@ -135,13 +126,13 @@ export default function Home() {
                 catalog: "bg-amber-50 text-amber-600 dark:bg-amber-950 dark:text-amber-300",
                 observability: "bg-rose-50 text-rose-600 dark:bg-rose-950 dark:text-rose-300",
               };
+              const accentBars: Record<string, string> = {
+                pipeline: "bg-blue-500", dq: "bg-emerald-500", schema: "bg-violet-500",
+                orchestration: "bg-cyan-500", catalog: "bg-amber-500", observability: "bg-rose-500",
+              };
               return (
                 <div key={a.name} className={`relative p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-all duration-200 ${borders[key] || ""} hover:shadow-lg`}>
-                  <div className="text-2xl mb-2" aria-hidden="true">
-                    {["Pipeline", "Data Quality", "Schema", "Orchestration", "Catalog", "Observability"].indexOf(a.name) > -1
-                      ? ["🔧", "✅", "📐", "⚡", "📚", "🔍"][["Pipeline", "Data Quality", "Schema", "Orchestration", "Catalog", "Observability"].indexOf(a.name)]
-                      : "🤖"}
-                  </div>
+                  <div className={`w-8 h-1 rounded-full mb-3 ${accentBars[key] || "bg-slate-300"}`} />
                   <div className="font-semibold text-sm text-slate-900 dark:text-slate-100 mb-1">{a.name}</div>
                   <div className="text-sm text-slate-500 dark:text-slate-400 mb-3">{a.desc}</div>
                   <span className={`inline-block text-[11px] font-medium px-2.5 py-0.5 rounded-full ${tags[key] || "bg-slate-100 text-slate-600"}`}>
