@@ -82,13 +82,12 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen" style={{backgroundColor: "var(--bg)"}}>
-      {/* Nav */}
-      <nav className="sticky top-0 z-50 bg-white/90 dark:bg-slate-800/90 backdrop-blur border-b border-slate-200 dark:border-slate-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-14 gap-8">
-          <h1 className="text-lg font-bold tracking-tight">⚒️ dataforge</h1>
+      {/* Dashboard tabs bar */}
+      <div className="sticky top-14 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-12 gap-6">
           {(["overview", "pipelines", "agents"] as const).map(t => (
             <button key={t} onClick={() => setTab(t)}
-              className={`text-sm font-medium capitalize ${tab === t ? "text-blue-600 dark:text-blue-400" : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200"}`}>{t}</button>
+              className={`text-sm font-medium capitalize ${tab === t ? "text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400" : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200"}`}>{t}</button>
           ))}
           <div className="ml-auto flex items-center gap-3 text-xs text-slate-400 dark:text-slate-500">
             <span className={`w-2 h-2 rounded-full ${live ? 'bg-green-500' : 'bg-red-500'}`} title={live ? 'Live' : 'Disconnected'} />
@@ -98,7 +97,7 @@ export default function DashboardPage() {
             <span>{agents.length} agents</span>
           </div>
         </div>
-      </nav>
+      </div>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
